@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from middlewares.exception_handlers import catch_exception_middleware
+from routes.upload_pdf import router as upload_router
+from routes.ask_question import router as ask_router
 
 app = FastAPI(title = "Meditron", description = "Medical chatbot")
 
@@ -22,4 +24,5 @@ app.middleware("http")(catch_exception_middleware)
 
 
 # routers
- 
+app.include_router(upload_router)
+app.include_router(ask_router)
